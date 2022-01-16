@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.q-table tr th {
+   position: sticky;
+   z-index: 2;
+   background: #fff;
+}
+
+.q-table thead tr:last-child th {
+   top: 48px;
+   z-index: 3;
+}
+
+.q-table thead tr:first-child th {
+   top: 0;
+   z-index: 1;
+}
+
+.q-table tr:first-child th:first-child {
+   z-index: 3;
+}
+
+.q-table__container {
+   width: 100%;
+}
