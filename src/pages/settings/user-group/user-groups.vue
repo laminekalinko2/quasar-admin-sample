@@ -1,7 +1,8 @@
+it config core.ignorecase false
 <template>
    <base-crud-list
-      title="Brands"
-      data-endpoint="/brands"
+      title="User Groupss"
+      data-endpoint="/user-groups"
       :column-defs="state.columns"
       @edit="onEdit"
    >
@@ -36,11 +37,11 @@
       <template #form="{ onCreateUpdate }">
          <base-dialog
             v-model:open="state.showFormDialog"
-            :title="state.selectedRowId > 0 ? 'Edit Brand' : 'Create Brand'"
+            :title="state.selectedRowId > 0 ? 'Edit Company Type' : 'Create Company Type'"
             @close="onFormDialogClose"
             :loading="state.formLoading"
          >
-            <BrandForm @submit="submitForm($event, onCreateUpdate)" :initial-data="state.formInitialData" />
+            <UserGroupForm @submit="submitForm($event, onCreateUpdate)" :initial-data="state.formInitialData" />
          </base-dialog>
       </template>
    </base-crud-list>
@@ -48,8 +49,8 @@
 
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import { Brand } from '@/types';
-import BrandForm from './brand-form.vue';
+import { UserGroup } from '@/types';
+import UserGroupForm from './user-group-form.vue';
 import http from '@/utils/http';
 import { useQuasar } from 'quasar';
 
@@ -58,22 +59,26 @@ const state = reactive({
    formLoading: false,
    selectedRowId: 0,
    columns: [
-      { field: 'name', name: 'name', label: 'Name', align: 'left' },
-      { field: 'email', name: 'email', label: 'Email', align: 'left' },
-      { field: 'active', name: 'active', label: 'Is Active ?', align: 'center' },
+      { field: 'groupName', name: 'groupName', label: 'Group Name', align: 'left' },
+      {
+         field: 'description',
+         name: 'description',
+         label: 'Description',
+         align: 'left',
+      },
       { name: 'actions', align: 'right', field: 'actions' },
    ],
-   formInitialData: {} as Brand,
+   formInitialData: {} as UserGroup,
 });
 const $q = useQuasar();
 
-async function onEdit(data: Brand) {
+async function onEdit(data: UserGroup) {
    state.formLoading = true;
    state.showFormDialog = true;
    state.selectedRowId = Number(data?.id);
 
    if (state.selectedRowId) {
-      const result = await http.get<Brand>(`/brands/${state.selectedRowId}`);
+      const result = await http.get<UserGroup>(`/user-groups/${state.selectedRowId}`);
       if (result.data?.id) {
          state.formInitialData = result.data;
       }
@@ -84,15 +89,15 @@ async function onEdit(data: Brand) {
 
 function onFormDialogClose() {
    state.selectedRowId = 0;
-   state.formInitialData = {} as Brand;
+   state.formInitialData = {} as UserGroup;
 }
 
-async function submitForm(payload: Brand, callback: (arg: unknown) => void) {
-   const result = await http.post<Brand>('/brands', payload);
+async function submitForm(payload: UserGroup, callback: (arg: unknown) => void) {
+   const result = await http.post<UserGroup>('/user-groups', payload);
    if (result.data?.id) {
       $q.notify({
          type: 'positive',
-         message: 'Brand saved with success.',
+         message: 'User group saved with success.',
       });
       callback(result.data);
    }

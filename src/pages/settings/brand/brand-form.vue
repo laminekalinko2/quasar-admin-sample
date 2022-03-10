@@ -1,15 +1,24 @@
 <template>
    <q-form @submit.prevent="submit" class="tw-space-y-5">
-      <AppTextInput
-         label="Group Name"
-         v-model="state.formData.groupName"
-         :validator="v$.formData.groupName"
+      <base-input
+         label="Name"
+         v-model="state.formData.name"
+         :validator="v$.formData.name"
       />
-      <AppTextInput
-         type="textarea"
-         rows="3"
-         label="Description"
-         v-model="state.formData.description"
+
+      <base-input
+         type="email"
+         label="Email"
+         v-model="state.formData.email"
+         :validator="v$.formData.email"
+      />
+
+      <q-checkbox
+         v-model="state.formData.active"
+         label="Set as active ?"
+         :error-message="v$.formData.active.$errors[0]?.$message"
+         :error="v$.formData.active?.$error"
+         left-label
       />
 
       <p v-if="state.formData.createdAt">
@@ -32,27 +41,30 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
 import useVuelidate from '@vuelidate/core';
-import { required } from '@vuelidate/validators';
-import { UserGroup } from '@/types';
+import { required, email } from '@vuelidate/validators';
+import { Brand } from '@/types';
 import { displayDateTime } from '@/utils/dates';
 
 const props = defineProps<{
-   initialData?: UserGroup;
+   initialData?: Brand;
 }>();
 const emit = defineEmits(['submit']);
 
 const state = reactive({
    formData: {
-      groupName: '',
-      description: '',
+      name: '',
+      email: '',
+      active: false,
       createdAt: '',
       updatedAt: '',
-   } as UserGroup,
+   },
 });
 
 const validationRules = {
    formData: {
-      groupName: { required },
+      name: { required },
+      email: { required, email },
+      active: { required },
    },
 };
 

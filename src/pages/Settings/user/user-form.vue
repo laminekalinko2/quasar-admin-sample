@@ -1,44 +1,44 @@
 <template>
    <q-form @submit.prevent="submit" class="tw-space-y-5">
       <div class="tw-grid tw-grid-cols-2 tw-gap-y-4 tw-gap-x-16">
-         <AppTextInput
+         <base-input
             label="First name"
             v-model="state.formData.firstName"
             :validator="v$.formData.firstName"
          />
 
-         <AppTextInput
+         <base-input
             label="Last name"
             v-model="state.formData.lastName"
             :validator="v$.formData.lastName"
          />
 
-         <AppTextInput
+         <base-input
             label="Username"
             v-model="state.formData.username"
             :validator="v$.formData.username"
          />
 
-         <AppTextInput
+         <base-input
             label="Email"
             type="email"
             v-model="state.formData.email"
             :validator="v$.formData.email"
          />
 
-         <AppPhoneInput
+         <base-phone-input
             label="Cell phone"
             v-model="state.formData.cellPhone"
             :validator="v$.formData.cellPhone"
          />
 
-         <AppPhoneInput
+         <base-phone-input
             label="Office phone"
             v-model="state.formData.officePhone"
             :validator="v$.formData.officePhone"
          />
 
-         <AppSelect
+         <base-select
             label="Brand"
             v-model="state.formData.brandId"
             :validator="v$.formData.brandId"
@@ -49,7 +49,7 @@
             map-options
          />
 
-         <AppSelect
+         <base-select
             label="User Groups"
             v-model="state.formData.userGroupIds"
             :options="props?.userGroups ?? []"

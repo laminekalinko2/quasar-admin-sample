@@ -1,12 +1,12 @@
 <template>
    <q-form @submit.prevent="submit" class="tw-space-y-5">
-      <AppTextInput
+      <base-input
          label="Name"
          v-model="state.formData.name"
          :validator="v$.formData.name"
       />
 
-      <AppTextInput
+      <base-input
          type="email"
          label="Email"
          v-model="state.formData.email"
@@ -42,11 +42,11 @@
 import { reactive } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required, email } from '@vuelidate/validators';
-import { SiteBrand } from '@/types';
+import { Brand } from '@/types';
 import { displayDateTime } from '@/utils/dates';
 
 const props = defineProps<{
-   initialData?: SiteBrand;
+   initialData?: Brand;
 }>();
 const emit = defineEmits(['submit']);
 

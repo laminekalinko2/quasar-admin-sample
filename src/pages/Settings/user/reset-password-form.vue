@@ -1,12 +1,12 @@
 <template>
    <q-form @submit.prevent="submit" class="tw-space-y-5">
-      <AppTextInput
+      <base-input
          type="password"
          label="Password"
          v-model="state.formData.password"
          :validator="v$.formData.password"
       />
-      <AppTextInput
+      <base-input
          type="password"
          label="Confirm Password"
          v-model="state.formData.confirmPassword"

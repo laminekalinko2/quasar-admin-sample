@@ -2,16 +2,16 @@ import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from 'vue-
 
 import { useUserStore } from '@/stores/userStore';
 
-import MainLayout from '@/layouts/MainLayout.vue';
-import Error404 from '@/pages/Error404.vue';
-import Dashboard from '@/pages/Dashboard.vue';
-import Login from '@/pages/Login.vue';
+import MainLayout from '@/layouts/main-layout.vue';
+import Error404 from '@/pages/error-404.vue';
+import Dashboard from '@/pages/dashboard.vue';
+import Login from '@/pages/login.vue';
 
 // Idenfity & Access
 import Settings from '@/pages/settings/index.vue';
-import UserGroups from '@/pages/settings/userGroup/UserGroups.vue';
-import Users from '@/pages/settings/user/Users.vue';
-import Brands from '@/pages/settings/brand/Brands.vue';
+import UserGroups from '@/pages/settings/user-group/user-groups.vue';
+import Users from '@/pages/settings/user/users.vue';
+import Brands from '@/pages/settings/brand/brands.vue';
 
 const routes: RouteRecordRaw[] = [
    {

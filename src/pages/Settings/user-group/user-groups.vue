@@ -1,5 +1,6 @@
+it config core.ignorecase false
 <template>
-   <AppCrudList
+   <base-crud-list
       title="User Groupss"
       data-endpoint="/user-groups"
       :column-defs="state.columns"
@@ -34,22 +35,22 @@
       </template>
 
       <template #form="{ onCreateUpdate }">
-         <AppDialog
+         <base-dialog
             v-model:open="state.showFormDialog"
             :title="state.selectedRowId > 0 ? 'Edit Company Type' : 'Create Company Type'"
             @close="onFormDialogClose"
             :loading="state.formLoading"
          >
             <UserGroupForm @submit="submitForm($event, onCreateUpdate)" :initial-data="state.formInitialData" />
-         </AppDialog>
+         </base-dialog>
       </template>
-   </AppCrudList>
+   </base-crud-list>
 </template>
 
 <script lang="ts" setup>
 import { reactive } from 'vue';
 import { UserGroup } from '@/types';
-import UserGroupForm from './UserGroupForm.vue';
+import UserGroupForm from './user-group-form.vue';
 import http from '@/utils/http';
 import { useQuasar } from 'quasar';
 

@@ -3,12 +3,12 @@ import { Quasar, Dialog, Notify } from 'quasar';
 import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
-import AppTextInput from '@/components/AppTextInput.vue';
-import AppSelect from '@/components/AppSelect.vue';
-import AppDialog from '@/components/AppDialog.vue';
-import AppCrudList from '@/components/AppCrudList.vue';
-import AppPhoneInput from '@/components/AppPhoneInput.vue';
-import AppZipCodeInput from '@/components/AppZipCodeInput.vue';
+import BaseInput from '@/components/base-input.vue';
+import BaseSelect from '@/components/base-select.vue';
+import BaseDialog from '@/components/base-dialog.vue';
+import BaseCrudList from '@/components/base-crud-list.vue';
+import BasePhoneInput from '@/components/base-phone-input.vue';
+import BaseZipcodeInput from '@/components/base-zipcode-input.vue';
 
 import VueAxios from 'vue-axios';
 import App from './App.vue';
@@ -56,11 +56,11 @@ app.use(VueAxios, http);
 app.use(router);
 
 // components
-app.component('AppTextInput', AppTextInput);
-app.component('AppSelect', AppSelect);
-app.component('AppDialog', AppDialog);
-app.component('AppPhoneInput', AppPhoneInput);
-app.component('AppZipCodeInput', AppZipCodeInput);
-app.component('AppCrudList', AppCrudList);
+app.component('base-input', BaseInput);
+app.component('BaseSelect', BaseSelect);
+app.component('BaseDialog', BaseDialog);
+app.component('BasePhoneInput', BasePhoneInput);
+app.component('BaseZipcodeInput', BaseZipcodeInput);
+app.component('BaseCrudList', BaseCrudList);
 
 app.mount('#app');
